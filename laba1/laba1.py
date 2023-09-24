@@ -4,7 +4,7 @@ import numpy as np
 from math import sqrt, pow
 
 num_points = 10000
-classes = 9
+classes = 6
 
 
 def distance(x1, y1, x2, y2) -> float:
@@ -24,7 +24,7 @@ def draw(clusters, centers):
     colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow', 'cyan', 'grey', 'Indigo']
     for i, cluster in enumerate(clusters):
         cluster = np.array(cluster)
-        plt.scatter(cluster[:, 0], cluster[:, 1], c=colors[i], s=20)
+        plt.scatter(cluster[:, 0], cluster[:, 1], c=colors[i], s=5)
     plt.scatter(centers[:, 0], centers[:, 1], c='black', s=50)
     plt.show()
 
