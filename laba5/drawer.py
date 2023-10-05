@@ -30,12 +30,12 @@ def get_limits(classified_data):
     }
 
 
-def show_results(coefficiens, classified_data):
+def show_results(coefficiens, classified_data, my_plot):
     # limits = get_limits(classified_data)
     # plt.xlim(limits['x'])
     # plt.ylim(limits['y'])
-    plot_function(coefficiens, ())
-    draw_dots(classified_data)
+    plot_function(coefficiens, (), my_plot)
+    # draw_dots(classified_data)
     plt.show()
 
 
@@ -51,17 +51,17 @@ def is_intersecting_lines(coefficients):
     return coefficients[2] * coefficients[1] == coefficients[3] * coefficients[0]
 
 
-def plot_function(coefficients, interval):
+def plot_function(coefficients, interval, my_plot):
     function = get_function_for_plotting(coefficients)
     break_point = get_function_break_point(coefficients)
-    interval_start, interval_end = -5,5
+    interval_start, interval_end = -100,100
     if break_point is not None:
         arange = np.arange(interval_start, break_point - STEP, STEP)
-        plt.plot(arange, function(arange), color='b')
+        my_plot.plot(arange, function(arange), color='b')
         arange = np.arange(break_point + STEP, interval_end, STEP)
-        plt.plot(arange, function(arange), color='b')
+        my_plot.plot(arange, function(arange), color='b')
         if is_intersecting_lines(coefficients):
             plt.axvline(break_point, color='b')
     else:
         arange = np.arange(interval_start, interval_end, STEP)
-        plt.plot(arange, function(arange), color='b')
+        my_plot.plot(arange, function(arange), color='b')
