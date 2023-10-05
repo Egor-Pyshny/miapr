@@ -4,6 +4,7 @@ import random
 import drawer
 import matplotlib.pyplot as plt
 
+POINTS_AMOUNT = 1000
 basic_coef = [1,4,4,16]
 my_coef = [0,0,0,0]
 my_prev_coef = [0,0,0,0]
@@ -27,8 +28,8 @@ data = [
 ]
 
 data_for_classification = []
-for i in range(0, 250):
-    temp = [random.randint(-10, 10), random.randint(-10, 10)]
+for i in range(0, POINTS_AMOUNT):
+    temp = [random.uniform(-10, 10), random.uniform(-10, 10)]
     data_for_classification.append(temp)
 
 res = False
@@ -57,22 +58,9 @@ while not res:
     if i == len(data)-1:
         i = 0
 
-x_min = math.inf
-x_max = -math.inf
-y_min = math.inf
-y_max = -math.inf
-
 for point in data:
     x = point["obj"][0]
     y = point["obj"][1]
-    if x > x_max:
-        x_max = x
-    if x < x_min:
-        x_min = x
-    if y > y_max:
-        y_max = y
-    if y < y_min:
-        y_min = y
     if not point["class"]:
         color = "green"
     else:
@@ -80,16 +68,6 @@ for point in data:
     plt.scatter(x, y, color=color)
 
 for point in data_for_classification:
-    x = point[0]
-    y = point[1]
-    if x > x_max:
-        x_max = x
-    if x < x_min:
-        x_min = x
-    if y > y_max:
-        y_max = y
-    if y < y_min:
-        y_min = y
     p = my_coef[0] + \
         my_coef[1]*point[0] + \
         my_coef[2]*point[1] + \
@@ -100,8 +78,8 @@ for point in data_for_classification:
         color = "red"
     plt.scatter(point[0],point[1],color = color)
 
-plt.xlim(x_min-1, x_max+1)
-plt.ylim(y_min-1, y_max+1)
+plt.xlim(-11, 11)
+plt.ylim(-11, 11)
 plt.axhline(0, color='black', linewidth=1)
 plt.axvline(0, color='black', linewidth=1)
 plt.grid(linewidth=0.2)
