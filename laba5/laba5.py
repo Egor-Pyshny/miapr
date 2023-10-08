@@ -1,4 +1,3 @@
-import math
 import random
 
 import drawer
@@ -76,12 +75,12 @@ for point in data_for_classification:
         color = "green"
     else:
         color = "red"
-    plt.scatter(point[0],point[1],color = color)
+    plt.scatter(point[0], point[1], color=color)
 
 plt.xlim(-11, 11)
 plt.ylim(-11, 11)
 plt.axhline(0, color='black', linewidth=1)
 plt.axvline(0, color='black', linewidth=1)
 plt.grid(linewidth=0.2)
-drawer.show_results(my_coef,data, plt)
+drawer.show_results(my_coef, data, plt)
 plt.show()
