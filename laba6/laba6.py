@@ -3,19 +3,19 @@ from drawer import draw_result
 
 SIZE = 5
 START_SIZE = 5
-# distances = [
-#     [0,13,11,10,6],
-#     [13,0,6,10,15],
-#     [11,6,0,18,6],
-#     [10,10,18,0,13],
-#     [6,15,6,13,0],
-# ]
 distances = [
-    [0,5,0.5,2],
-    [5,0,1,0.6],
-    [0.5,1,1,2.5],
-    [2,0.6,2.5,0],
+    [0,13,11,10,6],
+    [13,0,6,10,15],
+    [11,6,0,18,6],
+    [10,10,18,0,13],
+    [6,15,6,13,0],
 ]
+# distances = [
+#     [0,5,0.5,2],
+#     [5,0,1,0.6],
+#     [0.5,1,1,2.5],
+#     [2,0.6,2.5,0],
+# ]
 
 groups = []
 
@@ -27,11 +27,15 @@ def find_min():
         for j in range(i+1, SIZE):
             if distances[i][j] < minvalue:
                 minvalue = distances[i][j]
+                min_1.append(i)
+                min_2.append(j)
+                return min_1, min_2, minvalue
     for i in range(0,SIZE):
         for j in range(i, SIZE):
             if distances[i][j] == minvalue:
                 min_1.append(i)
                 min_2.append(j)
+                return min_1, min_2, minvalue
     return min_1, min_2, minvalue
 
 
@@ -53,7 +57,6 @@ def is_continue():
     return False
 
 
-shift = 0
 repl = math.inf
 # for l3 in distances:
 #     for i in range(0,SIZE):
@@ -86,31 +89,6 @@ while True:
     distances = temp
     if not is_continue():
         break
-
-
 for gr in groups:
     gr.append(0)
-shift=0
-ignore = 0
-for i,gr in enumerate(groups):
-    if ignore>0:
-        ignore -= 1
-        continue
-    if gr[0]>=START_SIZE:
-        gr[0]+=shift
-    if gr[1] >= START_SIZE:
-        gr[1] += shift
-    if len(gr)>4:
-        if len(gr) % 2 == 0:
-            n1 = [gr[0],gr[1],gr[-2],gr[-1]]
-            n2 = [gr[2],gr[3],gr[-2],gr[-1]]
-            n3 = [5+shift,5+1+shift, gr[-2],gr[-1]]
-            ignore += 2
-            groups.remove(gr)
-            groups.insert(i,n1)
-            groups.insert(i+1,n2)
-            groups.insert(i+2,n3)
-            shift+=2
-
-
 draw_result(groups)
