@@ -29,16 +29,6 @@ def generate_training_obj():
     )
     for i in range(0, classes_amount):
         training_objects[i]["obj"].append(1)
-        # for j in range(0, training_objects_amount):
-        #     training_object = []
-        #     for n in range(0, attributes_amount):
-        #         training_object.append(random.randint(attributes_amount*-1, attributes_amount))
-        #     training_object.append(1)
-        #     temp = {
-        #         "obj":training_object,
-        #         "class":i,
-        #     }
-        #     training_objects.append(temp)
 
 
 def decisive_function(weight_t, temp) -> int:

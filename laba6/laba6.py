@@ -20,22 +20,15 @@ distances = [
 groups = []
 
 def find_min():
-    min_1 = []
-    min_2 = []
+    min_1 = 0
+    min_2 = 0
     minvalue = math.inf
-    for i in range(0,SIZE):
+    for i in range(0, SIZE):
         for j in range(i+1, SIZE):
             if distances[i][j] < minvalue:
                 minvalue = distances[i][j]
-                min_1.append(i)
-                min_2.append(j)
-                return min_1, min_2, minvalue
-    for i in range(0,SIZE):
-        for j in range(i, SIZE):
-            if distances[i][j] == minvalue:
-                min_1.append(i)
-                min_2.append(j)
-                return min_1, min_2, minvalue
+                min_1 = i
+                min_2 = j
     return min_1, min_2, minvalue
 
 
@@ -52,7 +45,7 @@ def is_continue():
         for j in range(0, SIZE):
             if distances[i][j] != math.inf:
                 count += 1
-                if count>1:
+                if count > 1:
                     return True
     return False
 
@@ -64,23 +57,21 @@ repl = math.inf
 
 while True:
     min_i, min_j, min_v = find_min()
-    temp4 = *min_i,*min_j
     temp = []
-    new_grp = list(set(temp4))
-    new_grp.append(float(min_v))
+    new_grp = [min_i, min_j, float(min_v), 0]
     groups.append(new_grp)
-    t3=[]
-    for l1 in range(0,SIZE):
+    t3 = []
+    for l1 in range(0, SIZE):
         t1 = []
-        for l2 in range(0,SIZE):
-            if (l2 in min_i or l2 in min_j) or (l1 in min_i or l1 in min_j):
+        for l2 in range(0, SIZE):
+            if (l2 == min_i or l2 == min_j) or (l1 == min_i or l1 == min_j):
                 t1.append(repl)
             else:
                 t1.append(distances[l1][l2])
-        if (l1 in min_i or l1 in min_j):
+        if l1 == min_i or l1 == min_j:
             t1.append(repl)
         else:
-            t1.append(new_value([*min_i,*min_j],l1))
+            t1.append(new_value([min_i, min_j], l1))
         t3.append(t1[-1])
         temp.append(t1)
     t3.append(0)
@@ -89,6 +80,4 @@ while True:
     distances = temp
     if not is_continue():
         break
-for gr in groups:
-    gr.append(0)
 draw_result(groups)
