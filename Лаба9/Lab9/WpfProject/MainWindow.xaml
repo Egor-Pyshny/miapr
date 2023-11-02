@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DMMaA LAB 9" Height="314" Width="272" MinHeight="000" MinWidth="000">
+    <Window.Resources>
+        <Style x:Key="TextBlockStyle">
+            <Setter Property="Control.FontFamily" Value="Open Sans" />
+            <Setter Property="Control.VerticalAlignment" Value="Center" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="TextBox.FontSize" Value="20" />
+        </Style>
+        <Style x:Key="TextBoxStyle">
+            <Setter Property="TextBox.FontFamily" Value="Open Sans" />
+            <Setter Property="TextBox.FontSize" Value="20" />
+            <Setter Property="TextBox.TextAlignment" Value="Center" />
+            <Setter Property="TextBox.VerticalAlignment" Value=" Center" />
+            <Setter Property="Control.Margin" Value="3" />
+            <Setter Property="TextBox.TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="ButtonStyle">
+            <Setter Property="Control.FontFamily" Value="Open Sans" />
+            <Setter Property="Control.FontSize" Value="20" />
+            <Setter Property="Control.Background" Value="#FFF1F1F1" />
+            <Setter Property="Control.Margin" Value="3" />
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,61,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="3" Grid.ColumnSpan="2" Margin="0,0,-58,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="3" Margin="0,0,0,10" Grid.RowSpan="2">
+                    <Grid Margin="0,0,6,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="ClassificationResultLabel" Style="{StaticResource TextBoxStyle}" Margin="3,0,3,0" />
+                        <Button Grid.Row="1" x:Name="ClassificationButton" Style="{StaticResource ButtonStyle}" Content="classifie" IsEnabled="False" Click="ClassificationButton_Click" Margin="3,3,3,3"/>
+                        <Button x:Name="OpenReadyNetwork" Content="load network" Style="{StaticResource ButtonStyle}" Click="OpenReadyNetwork_Click" Margin="0,3,6,3" Grid.Row="2" />
+                        <Button Grid.Row="3" x:Name="LoadImageButton" Content="load img" Style="{StaticResource ButtonStyle}" IsEnabled="False" Click="LoadImageButton_Click" Margin="3,7,3,8" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
